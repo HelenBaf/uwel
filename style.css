@@ -271,3 +271,4 @@ footer p{color:var(--mute);margin:12px 0 0;max-width:34ch}
 @media(max-width:1000px){.gline{display:none}}
 .dl{background:#f4e4e5}
 .dl img{-webkit-mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 70%,transparent 100%)}
+.case .vis.kidtxt{background:radial-gradient(80% 80% at 40% 40%,#9f1239,#1c0309 70%)}
