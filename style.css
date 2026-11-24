@@ -340,3 +340,7 @@ h1,h2,h3{overflow-wrap:break-word}
 @media(max-width:700px){.progs{grid-template-columns:minmax(0,1fr)}}
 .case .vis.sambo.photo{background-position:center 40%}
 .case .vis.photo.clean{background-position:center 45%}
+.khead h1{font-size:clamp(28px,3vw,44px);overflow-wrap:normal}
+.phead.arena{background:linear-gradient(90deg,rgba(7,7,7,.95) 0%,rgba(7,7,7,.75) 45%,rgba(7,7,7,.35) 100%),url(bb-arena.jpg) center/cover;padding-bottom:80px}
+.phead.arena::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(transparent,var(--bg))}
+.phead.arena .dl.big{box-shadow:0 30px 90px -20px rgba(227,6,19,.9),0 0 0 1px rgba(255,255,255,.2)}
