@@ -290,3 +290,39 @@ h1,h2,h3{overflow-wrap:break-word}
 .track span{font-size:clamp(18px,2vw,26px)}
 .fact b{font-size:clamp(32px,3.6vw,50px)}
 @media(max-width:600px){.hero h1{font-size:clamp(28px,8.4vw,40px)}}
+/* ---- energy pass ---- */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),#ff6a3d);transform-origin:0 50%;transform:scaleX(0);z-index:60}
+.hero::after{content:"";position:absolute;width:60vmax;height:60vmax;left:-20vmax;bottom:-30vmax;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.22),transparent 60%);animation:drift 14s ease-in-out infinite alternate;pointer-events:none}
+@keyframes drift{to{transform:translate(18vmax,-12vmax)}}
+.stack{position:relative;aspect-ratio:1/1.05;perspective:1200px;transform:rotateX(var(--rx,0)) rotateY(var(--ry,0));transform-style:preserve-3d;transition:transform .2s ease-out}
+.stack .glow{position:absolute;inset:12%;border-radius:50%;background:radial-gradient(circle,rgba(227,6,19,.65),transparent 65%);filter:blur(30px);animation:pulseg 4s ease-in-out infinite}
+@keyframes pulseg{50%{opacity:.6;transform:scale(1.08)}}
+.stack .p{position:absolute;width:56%;border-radius:18px;box-shadow:0 40px 80px -20px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.12);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.stack .p1{left:0;top:10%;transform:rotate(-10deg);animation:f1 7s ease-in-out infinite}
+.stack .p3{right:0;top:2%;transform:rotate(9deg);animation:f2 8s ease-in-out infinite}
+.stack .p2{left:22%;top:18%;width:58%;z-index:2;animation:f3 6s ease-in-out infinite}
+@keyframes f1{50%{transform:rotate(-12deg) translateY(-12px)}}
+@keyframes f2{50%{transform:rotate(11deg) translateY(10px)}}
+@keyframes f3{50%{transform:translateY(-14px) rotate(1deg)}}
+.stack .badge{position:absolute;width:24%;right:4%;bottom:4%;border-radius:50%;z-index:3;box-shadow:0 0 0 3px rgba(255,255,255,.15),0 20px 50px rgba(227,6,19,.7);animation:spin 18s linear infinite}
+.marquee{background:var(--red);border:0;transform:rotate(-1.5deg);margin:10px -2vw;box-shadow:0 20px 60px -20px rgba(227,6,19,.8)}
+.track span{color:#fff;-webkit-text-stroke:0}
+.track span:not(.f){color:transparent;-webkit-text-stroke:1.4px #fff}
+.track b{color:#0b0b0c}
+.card,.div,.artist,.case{--mx:50%;--my:50%}
+.card::before,.div::before,.artist::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(255,42,54,.16),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:0}
+.card:hover::before,.div:hover::before,.artist:hover::before{opacity:1}
+.div,.artist{position:relative}
+.case .vis.photo{background-size:cover;background-position:center top;min-height:420px}
+.case .vis.photo .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.65))}
+.case .vis .big.sm{font-size:clamp(34px,4vw,60px);align-self:end;margin-bottom:26px}
+.case .vis.photo{transition:background-size .6s}
+.case:hover .vis.photo{background-size:108%}
+.tiltwrap{display:grid;place-items:center}
+.poster{width:min(100%,420px);border-radius:22px;transform:rotate(3deg);box-shadow:0 40px 90px -30px rgba(227,6,19,.8),0 0 0 1px rgba(255,255,255,.12);animation:f3 6s ease-in-out infinite}
+.fact{position:relative;overflow:hidden}
+.fact::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--red);transition:width 1.2s .3s}
+.facts.in .fact::after{width:100%}
+@media(max-width:820px){.stack{width:min(88vw,420px);margin:0 auto;order:-1}.case .vis.photo{min-height:320px}}
+@media(prefers-reduced-motion:reduce){.stack{transform:none}}
+.marquee{margin:10px 0}.hero{overflow:hidden}
