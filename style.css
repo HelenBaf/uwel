@@ -109,3 +109,10 @@ footer .soc{display:flex;flex-wrap:wrap;gap:16px}
 @media(max-width:760px){.hgrid,.artist{grid-template-columns:minmax(0,1fr)}.stage{height:min(88vw,400px);order:-1}.hero::before{display:none}.event{grid-template-columns:90px minmax(0,1fr)}.event .cta{grid-column:1/-1}.artist .pic{max-width:260px;margin:0 auto}}
 @media(max-width:600px){.g2,.g3,.fgrid{grid-template-columns:minmax(0,1fr)}.brand span{display:none}.top .wrap{gap:10px}}
 @media(prefers-reduced-motion:reduce){.float{animation:none}html{scroll-behavior:auto}.cta{transition:none}}
+
+.card.net{flex-direction:row;align-items:center;gap:14px;text-decoration:none;transition:border-color .15s,transform .15s}
+.card.net:hover{border-color:var(--red2);transform:translateY(-2px)}
+.net .num{font:800 14px Unbounded,sans-serif;color:var(--red2);flex:none}
+.net .h{font-weight:800;font-size:16px;overflow-wrap:anywhere;flex:1}
+.net .go{font-size:13px;font-weight:700;color:var(--mute);flex:none}
+@media(prefers-reduced-motion:reduce){.card.net{transition:none}}
