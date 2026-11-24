@@ -272,3 +272,7 @@ footer p{color:var(--mute);margin:12px 0 0;max-width:34ch}
 .dl{background:#f4e4e5}
 .dl img{-webkit-mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 70%,transparent 100%)}
 .case .vis.kidtxt{background:radial-gradient(80% 80% at 40% 40%,#9f1239,#1c0309 70%)}
+.khead h1{font-size:clamp(34px,4.4vw,62px)}
+.khead{grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(24px,4vw,56px)}
+.kstage{max-width:460px;width:100%;justify-self:end}
+@media(max-width:1180px){.nav a.go{display:none}.nav a{padding:10px 11px}}
