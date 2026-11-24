@@ -276,3 +276,7 @@ footer p{color:var(--mute);margin:12px 0 0;max-width:34ch}
 .khead{grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(24px,4vw,56px)}
 .kstage{max-width:460px;width:100%;justify-self:end}
 @media(max-width:1180px){.nav a.go{display:none}.nav a{padding:10px 11px}}
+/* Unbounded is very wide: keep split headings inside their column */
+.khead h1{font-size:clamp(30px,3.4vw,50px)}
+h1,h2,h3{overflow-wrap:break-word}
+.khead>div:first-child{min-width:0}
