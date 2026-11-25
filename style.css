@@ -360,8 +360,8 @@ body.annc-on .mnav.open{inset:112px 0 auto}
 body.annc-on .hero{padding-top:150px}
 
 @media(max-width:600px){.annc .tx{display:none}.annc{font-size:13px}.annc .wrap{gap:8px}.annc a{padding:5px 11px}.annc b{font-size:12px}.annc .tn{font-weight:800}}
-.annc b{flex:none}.annc .ds{display:none}
-@media(max-width:600px){.annc .dl{display:none}.annc .ds{display:inline}}
+.annc b{flex:none}.annc .sht{display:none}
+@media(max-width:600px){.annc .lng{display:none}.annc .sht{display:inline}}
 
 /* sticky header (stable on iOS Safari) */
 .topwrap{position:sticky;top:0;z-index:55}
@@ -377,4 +377,4 @@ body.annc-on .hero{padding-top:150px}
 /* iOS Safari: cover the strip above the sticky header and respect the notch */
 .topwrap{padding-top:env(safe-area-inset-top);background:#070707}
 .topwrap::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:300px;background:#070707}
-body.annc-on .topwrap{background:#b8040f}
+
