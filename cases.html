@@ -12,10 +12,11 @@
 <link rel="icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=7b0eb1fc">
+<link rel="stylesheet" href="style.css?v=a23432a3">
 </head>
 <body>
 <div class="progress" id="prog"></div>
+
 <header class="top" id="top"><div class="wrap">
   <a class="brand" href="./"><img src="uwell-prod-logo.png" alt="" width="42" height="42"><span><b>UWELL</b><small>GROUP · KYIV</small></span></a>
   <nav class="nav" aria-label="Меню"><a href="./">Головна</a><a href="cases" aria-current=page>Кейси</a><a href="artists">Артисти</a><a href="studio">Студія</a><a href="basketball">Баскетбол</a><a href="kids">KIDS</a><a href="contacts">Контакти</a><a class="go" href="contacts#form">Обговорити проєкт</a></nav>
@@ -53,6 +54,7 @@ const co=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return
   const step=t=>{t0??=t;const k=Math.min(1,(t-t0)/1200);el.textContent=Math.round(to*(1-(1-k)**3))+suf;if(k<1)requestAnimationFrame(step)};
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)el.textContent=to+suf;else requestAnimationFrame(step);co.unobserve(el)}),{threshold:.5});
 document.querySelectorAll('[data-to]').forEach(el=>co.observe(el));
+document.querySelectorAll('[data-end]').forEach(el=>{if(Date.now()>Date.parse(el.dataset.end)){el.remove()}});if(!document.getElementById('annc'))document.body.classList.remove('annc-on');
 const pr=document.getElementById('prog');addEventListener('scroll',()=>{const h=document.documentElement;pr.style.transform='scaleX('+(h.scrollTop/(h.scrollHeight-h.clientHeight||1))+')'},{passive:true});
 document.querySelectorAll('.card,.div,.artist,.case').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')}));
 const st=document.querySelector('.stack');if(st&&matchMedia('(pointer:fine)').matches)addEventListener('pointermove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;st.style.setProperty('--rx',(-y*8)+'deg');st.style.setProperty('--ry',(x*10)+'deg')});
