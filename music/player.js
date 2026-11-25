@@ -7,18 +7,18 @@ const ss={get(k){try{return JSON.parse(sessionStorage.getItem('uwp_'+k))}catch(e
 let order=ss.get('order');
 if(!Array.isArray(order)||order.length!==T.length){order=[...T.keys()];for(let a=order.length-1;a>0;a--){const b=Math.floor(Math.random()*(a+1));[order[a],order[b]]=[order[b],order[a]]}ss.set('order',order)}
 let pos=+ss.get('pos')||0;if(pos>=order.length)pos=0;
-const css=`#uwp{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(max(18px,env(safe-area-inset-bottom)) + 4px);z-index:70;width:58px;height:58px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;color:#fff;background:#e30613;box-shadow:0 14px 40px -10px rgba(227,6,19,.8),0 0 0 1px rgba(255,255,255,.14);transition:transform .2s,background .2s}
-#uwp:hover{background:#ff2a36;transform:scale(1.05)}#uwp:focus-visible{outline:2px solid #fff;outline-offset:4px}
+const css=`#uwp{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(max(18px,env(safe-area-inset-bottom)) + 4px);z-index:70;height:56px;padding:0 22px 0 18px;border-radius:999px;border:0;cursor:pointer;display:flex;align-items:center;gap:10px;font:800 15px Manrope,system-ui,sans-serif;color:#fff;background:#e30613;box-shadow:0 14px 40px -10px rgba(227,6,19,.8),0 0 0 1px rgba(255,255,255,.14);transition:transform .2s,background .2s}
+#uwp:hover{background:#ff2a36;transform:scale(1.04)}#uwp:focus-visible{outline:2px solid #fff;outline-offset:4px}
 #uwp svg{width:24px;height:24px;fill:currentColor}
-#uwp .eq{display:none;gap:3px;height:20px;align-items:flex-end}#uwp .eq i{width:4px;border-radius:2px;background:#fff;animation:uwpq .9s ease-in-out infinite}
+#uwp .eq{display:none;gap:3px;height:18px;width:18px;justify-content:center;align-items:flex-end}#uwp .eq i{width:4px;border-radius:2px;background:#fff;animation:uwpq .9s ease-in-out infinite}
 #uwp .eq i:nth-child(2){animation-delay:-.3s}#uwp .eq i:nth-child(3){animation-delay:-.6s}
 #uwp.on .eq{display:flex}#uwp.on svg{display:none}
-#uwp.on::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(227,6,19,.6);animation:uwpr 2s ease-out infinite}
-@keyframes uwpq{0%,100%{height:30%}50%{height:100%}}@keyframes uwpr{from{transform:scale(.9);opacity:1}to{transform:scale(1.35);opacity:0}}
+#uwp.on::after{content:"";position:absolute;inset:-6px;border-radius:999px;border:2px solid rgba(227,6,19,.6);animation:uwpr 2s ease-out infinite}
+@keyframes uwpq{0%,100%{height:30%}50%{height:100%}}@keyframes uwpr{from{transform:scale(.95);opacity:1}to{transform:scale(1.15,1.4);opacity:0}}
 @media (prefers-reduced-motion:reduce){#uwp .eq i,#uwp.on::after{animation:none}#uwp .eq i{height:70%}}`;
 const st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 const btn=document.createElement('button');btn.id='uwp';btn.type='button';
-btn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>';
+btn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span>Музика</span>';
 const au=new Audio();au.preload='none';
 const cur=()=>T[order[pos]];
 const label=()=>{const t=cur(),p=!au.paused;btn.classList.toggle('on',p);const s=(p?'Пауза: ':'Слухати музику UWELL: ')+t.a+' — '+t.t;btn.setAttribute('aria-label',s);btn.title=s};
