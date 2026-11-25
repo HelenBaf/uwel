@@ -17,21 +17,16 @@ const css=`#uwpbox{display:flex;align-items:center;gap:4px;padding:3px;border-ra
 #uwp:hover{background:#ff2a36}
 #uwp .tx{display:none;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #uwpbox:not(.hdr) #uwp .tx{display:block}#uwpbox:not(.hdr) #uwp{padding:0 16px 0 12px}
-#uwp .eq{display:none;gap:2px;height:15px;width:18px;justify-content:center;align-items:flex-end}#uwp .eq i{width:3px;border-radius:2px;background:#fff;animation:uwpq .9s ease-in-out infinite}
-#uwp .eq i:nth-child(2){animation-delay:-.3s}#uwp .eq i:nth-child(3){animation-delay:-.6s}
-#uwp.on .eq{display:flex}#uwp.on svg{display:none}
-@keyframes uwpq{0%,100%{height:30%}50%{height:100%}}
 @media (max-width:820px){#uwpbox.hdr{margin-left:auto}#uwpbox.hdr~.nav{margin-left:0}}
 @media (min-width:821px){#uwpbox.hdr{gap:2px;padding:2px;margin-left:-4px}#uwpbox.hdr .uwp-sk{width:32px;height:32px}#uwpbox.hdr #uwp{height:36px;min-width:36px;padding:0 9px}#uwpbox.hdr~.nav a{padding-left:11px;padding-right:11px}}
-@media (max-width:360px){.uwp-sk{width:32px;height:32px}}
-@media (prefers-reduced-motion:reduce){#uwp .eq i{animation:none;height:70%}}`;
+@media (max-width:360px){.uwp-sk{width:32px;height:32px}}`;
 const st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 const box=document.createElement('div');box.id='uwpbox';box.setAttribute('role','group');box.setAttribute('aria-label','Музика UWELL');
-box.innerHTML='<button type="button" class="uwp-sk" id="uwp-prev" aria-label="Попередній трек" title="Попередній трек"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2.5v14H6zM20 5v14L9.5 12z"/></svg></button><button type="button" id="uwp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="tx">Музика</span></button><button type="button" class="uwp-sk" id="uwp-next" aria-label="Наступний трек" title="Наступний трек"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 5H18v14h-2.5zM4 5v14l10.5-7z"/></svg></button>';
+box.innerHTML='<button type="button" class="uwp-sk" id="uwp-prev" aria-label="Попередній трек" title="Попередній трек"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2.5v14H6zM20 5v14L9.5 12z"/></svg></button><button type="button" id="uwp"><svg viewBox="0 0 24 24" aria-hidden="true" id="uwp-ic"><path d="M8 5v14l11-7z"/></svg><span class="tx">Музика</span></button><button type="button" class="uwp-sk" id="uwp-next" aria-label="Наступний трек" title="Наступний трек"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 5H18v14h-2.5zM4 5v14l10.5-7z"/></svg></button>';
 const btn=box.querySelector('#uwp'),tx=box.querySelector('.tx');
 const au=new Audio();au.preload='none';
 const cur=()=>T[order[pos]];
-const label=()=>{const t=cur(),p=!au.paused;btn.classList.toggle('on',p);if(p||au.currentTime>0)tx.textContent=t.t;const s=(p?'Пауза: ':'Слухати музику UWELL: ')+t.a+' — '+t.t;btn.setAttribute('aria-label',s);btn.title=s};
+const label=()=>{const t=cur(),p=!au.paused;btn.classList.toggle('on',p);box.querySelector('#uwp-ic').innerHTML=p?'<path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>':'<path d="M8 5v14l11-7z"/>';if(p||au.currentTime>0)tx.textContent=t.t;const s=(p?'Пауза: ':'Слухати музику UWELL: ')+t.a+' — '+t.t;btn.setAttribute('aria-label',s);btn.title=s};
 const set=(go,time)=>{const t=cur();au.src=base+t.f;if(time)au.addEventListener('loadedmetadata',()=>{try{au.currentTime=time}catch(e){}},{once:true});
  if('mediaSession' in navigator){try{navigator.mediaSession.metadata=new MediaMetadata({title:t.t,artist:t.a,album:'UWELL',artwork:[{src:base+'../uwell-prod-logo.png',sizes:'512x512',type:'image/png'}]})}catch(e){}}
  ss.set('pos',pos);if(go)au.play().catch(()=>{});label()};
