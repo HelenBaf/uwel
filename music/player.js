@@ -20,7 +20,7 @@ const css=`#uwpbox{display:flex;align-items:center;gap:4px;padding:3px;border-ra
 @media (max-width:820px){#uwpbox.hdr{margin-left:auto}#uwpbox.hdr~.nav{margin-left:0}}
 @media (min-width:821px){#uwpbox.hdr{gap:2px;padding:2px;margin-left:-4px}#uwpbox.hdr .uwp-sk{width:32px;height:32px}#uwpbox.hdr #uwp{height:36px;min-width:36px;padding:0 9px}#uwpbox.hdr~.nav a{padding-left:11px;padding-right:11px}}
 @media (max-width:360px){.uwp-sk{width:32px;height:32px}}`;
-const st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+const st=document.createElement('style');st.id='uwp-style';st.textContent=css;document.head.appendChild(st);
 const box=document.createElement('div');box.id='uwpbox';box.setAttribute('role','group');box.setAttribute('aria-label','Музика UWELL');
 box.innerHTML='<button type="button" class="uwp-sk" id="uwp-prev" aria-label="Попередній трек" title="Попередній трек"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2.5v14H6zM20 5v14L9.5 12z"/></svg></button><button type="button" id="uwp"><svg viewBox="0 0 24 24" aria-hidden="true" id="uwp-ic"><path d="M8 5v14l11-7z"/></svg><span class="tx">Музика</span></button><button type="button" class="uwp-sk" id="uwp-next" aria-label="Наступний трек" title="Наступний трек"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 5H18v14h-2.5zM4 5v14l10.5-7z"/></svg></button>';
 const btn=box.querySelector('#uwp'),tx=box.querySelector('.tx');
@@ -49,7 +49,12 @@ const same=u=>u.origin===location.origin&&!/\.(png|jpe?g|webp|mp3|pdf|zip)$/i.te
 const swap=async(url,push)=>{
  const r=await fetch(url,{credentials:'same-origin'});if(!r.ok)throw 0;
  const doc=new DOMParser().parseFromString(await r.text(),'text/html');
- if(!doc.querySelector('main')||!document.querySelector('main')||doc.querySelectorAll('head style').length)throw 0;
+ if(!doc.getElementById('top')||!document.getElementById('top'))throw 0;
+ const hk=e=>e.outerHTML,want=[...doc.head.querySelectorAll('link[rel=stylesheet],style')],have=[...document.head.querySelectorAll('link[rel=stylesheet],style:not(#uwp-style)')];
+ const hv=new Set(have.map(hk)),wv=new Set(want.map(hk)),wait=[];
+ for(const e of want)if(!hv.has(hk(e))){const n=document.importNode(e,true);if(n.tagName==='LINK')wait.push(new Promise(ok=>{n.onload=n.onerror=ok;setTimeout(ok,2500)}));document.head.insertBefore(n,st)}
+ await Promise.all(wait);
+ for(const e of have)if(!wv.has(hk(e)))e.remove();
  document.title=doc.title;
  box.remove();
  for(const n of [...document.body.childNodes])n.remove();
