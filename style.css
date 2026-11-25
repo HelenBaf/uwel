@@ -483,3 +483,6 @@ img.pav{object-fit:cover;display:block}
 .progs.p6 .prog:last-child{background:linear-gradient(160deg,#1a0a0c,#111113 60%);border-color:var(--line)}
 .progs.p6 .prog:last-child p{color:var(--mute)}.progs.p6 .prog:last-child .pn{color:var(--red2)}
 @media(max-width:700px){.progs.p6{grid-template-columns:minmax(0,1fr)}}
+/* never let decorative layers swallow clicks */
+.card::after,.card::before,.div::before,.artist::before,.artist .ph::before,.hero::before,.hero::after,.gal figure::after,.gal figure::before,.phead.arena::after,.case .vis .shade,.case .vis svg.bg,.grain{pointer-events:none}
+.card>a,.card .btn,.card .more,.cta-band .btn,.tm .btn,.pack .btn,.event .btn{position:relative;z-index:2}
