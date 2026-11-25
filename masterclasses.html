@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Зніми себе як профі — UWELL KIDS</title>
+<link rel="icon" href="favicon.png">
+<meta name="theme-color" content="#070707">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -133,9 +135,54 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:24px 16px 40px
 .sfc{margin-top:40px;color:#6d6a68;font-size:13px}
 @media(max-width:900px){.sfg{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.sfg{grid-template-columns:1fr}}
+
+/* site header (shared with the rest of uwell.kyiv.ua) */
+.topwrap{--line:rgba(255,255,255,.1);--mute:#a7a3a0;--red:#e30613;color:#f4f2ee;font:16px/1.6 Manrope,system-ui,sans-serif}
+.topwrap a{color:inherit}
+.top{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.top.solid{background:rgba(7,7,7,.86);backdrop-filter:blur(14px);border-color:var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
+.brand img{width:42px;height:42px;border-radius:50%}
+.brand b{font:800 18px Unbounded,sans-serif;letter-spacing:.02em}
+.brand small{display:block;font-size:10px;letter-spacing:.24em;color:var(--mute);font-weight:700}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;font-weight:700;font-size:15px;padding:10px 14px;border-radius:999px;color:var(--mute);min-height:44px;display:inline-flex;align-items:center;transition:color .2s,background .2s}
+.nav a:hover{color:#fff}
+.nav a[aria-current=page]{color:#fff;background:rgba(255,255,255,.08)}
+.nav a.go{background:var(--red);color:#fff;margin-left:6px}
+@media(max-width:820px){.nav a:not(.go){display:none}.nav{overflow:visible}}
+@media(max-width:600px){.brand small{display:none}}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:transparent;color:#fff;cursor:pointer;flex:none}
+.burger svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
+.mnav{display:none}
+@media(max-width:820px){.burger{display:grid;place-items:center}.mnav.open{display:flex;flex-direction:column;position:fixed;inset:72px 0 auto;background:rgba(7,7,7,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:12px max(5vw,18px) 22px;z-index:49}.mnav a{text-decoration:none;font:800 22px Unbounded,sans-serif;padding:14px 0;border-bottom:1px solid var(--line)}.mnav a[aria-current=page]{color:var(--red2)}}
+@media(max-width:600px){.nav a.go{display:none}}
+@media(max-width:1180px){.nav a.go{display:none}.nav a{padding:10px 11px}}
+body.annc-on .top,body.annc-on .progress{top:40px}
+body.annc-on .mnav.open{inset:112px 0 auto}
+.topwrap{position:sticky;top:0;z-index:55}
+.top,body.annc-on .top{position:relative;top:auto;background:rgba(7,7,7,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.mnav.open,body.annc-on .mnav.open{position:absolute;inset:100% 0 auto}
+.topwrap{padding-top:env(safe-area-inset-top);background:#070707}
+.topwrap::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:300px;background:#070707}
+@media(max-width:820px){.topwrap{position:relative;top:auto;padding-top:0}.topwrap::before{display:none}.mnav.open,body.annc-on .mnav.open{position:absolute;inset:100% 0 auto}}
+
+.top .wrap{max-width:1240px;margin:0 auto;padding:0 max(5vw,18px)}
 </style>
 </head>
 <body>
+<div class="topwrap">
+
+<header class="top" id="top"><div class="wrap">
+  <a class="brand" href="./"><img src="uwell-prod-logo.png" alt="" width="42" height="42"><span><b>UWELL</b><small>GROUP · KYIV</small></span></a>
+  <nav class="nav" aria-label="Меню"><a href="./">Головна</a><a href="cases">Кейси</a><a href="artists">Артисти</a><a href="studio">Послуги</a><a href="basketball">Баскетбол</a><a href="kids" aria-current=page>KIDS</a><a href="contacts">Контакти</a><a class="go" href="contacts#form">Обговорити проєкт</a></nav>
+  <button class="burger" id="burger" aria-label="Меню" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div></header>
+<nav class="mnav" id="mnav" aria-label="Мобільне меню"><a href="./">Головна</a><a href="cases">Кейси</a><a href="artists">Артисти</a><a href="studio">Послуги</a><a href="basketball">Баскетбол</a><a href="kids" aria-current=page>KIDS</a><a href="contacts">Контакти</a></nav>
+</div>
+
 <header class="hero band">
   <div class="wrap hgrid">
     <div>
@@ -246,7 +293,7 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:24px 16px 40px
   <div class="sfg">
     <div><a class="sfb" href="./"><img src="uwell-prod-logo.png" alt="" width="42" height="42"><span><b>UWELL</b><small>GROUP · KYIV</small></span></a>
       <p>UWELL KIDS ❤️ Тут починається твоя історія.</p></div>
-    <div><h4>Розділи</h4><a href="./">Головна</a><a href="cases">Кейси</a><a href="artists">Артисти</a><a href="studio">Студія</a><a href="basketball">Баскетбол</a><a href="kids">KIDS</a><a href="contacts">Контакти</a></div>
+    <div><h4>Розділи</h4><a href="./">Головна</a><a href="cases">Кейси</a><a href="artists">Артисти</a><a href="studio">Студія</a><a href="basketball">Баскетбол</a><a href="kids" aria-current=page>KIDS</a><a href="contacts">Контакти</a></div>
     <div><h4>Соцмережі</h4><a href="https://www.instagram.com/uwell.kids/">UWELL KIDS</a><a href="https://www.instagram.com/uwell.production/">Instagram</a><a href="https://www.youtube.com/@uwellprod">YouTube</a></div>
     <div><h4>Контакти</h4><a href="tel:+380633164656">+38 063 316 46 56</a><span>Київ, Україна</span></div>
   </div>
@@ -330,6 +377,9 @@ $('copy').addEventListener('click',async()=>{
 })();
 }
 </script>
-<script src="music/player.js?v=5"></script>
+<script>
+{const b=document.getElementById('burger'),m=document.getElementById('mnav');b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.setAttribute('aria-expanded',o)})}
+</script>
+<script src="music/player.js?v=6"></script>
 </body>
 </html>
