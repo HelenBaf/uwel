@@ -359,4 +359,6 @@ body.annc-on .top,body.annc-on .progress{top:40px}
 body.annc-on .mnav.open{inset:112px 0 auto}
 body.annc-on .hero{padding-top:150px}
 html{overflow-x:clip}
-@media(max-width:600px){.annc .t{display:none}.annc{font-size:13px}}
+@media(max-width:600px){.annc .tx{display:none}.annc{font-size:13px}.annc .wrap{gap:8px}.annc a{padding:5px 11px}.annc b{font-size:12px}.annc .tn{font-weight:800}}
+.annc b{flex:none}.annc .ds{display:none}
+@media(max-width:600px){.annc .dl{display:none}.annc .ds{display:inline}}
