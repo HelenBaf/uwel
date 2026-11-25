@@ -486,3 +486,9 @@ img.pav{object-fit:cover;display:block}
 /* never let decorative layers swallow clicks */
 .card::after,.card::before,.div::before,.artist::before,.artist .ph::before,.hero::before,.hero::after,.gal figure::after,.gal figure::before,.phead.arena::after,.case .vis .shade,.case .vis svg.bg,.grain{pointer-events:none}
 .card>a,.card .btn,.card .more,.cta-band .btn,.tm .btn,.pack .btn,.event .btn{position:relative;z-index:2}
+/* phones & in-app browsers: header stays at the top of the page and scrolls away normally */
+@media(max-width:820px){
+ .topwrap{position:relative;top:auto;padding-top:0}
+ .topwrap::before{display:none}
+ .mnav.open,body.annc-on .mnav.open{position:absolute;inset:100% 0 auto}
+}
