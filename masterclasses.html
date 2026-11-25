@@ -117,6 +117,22 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:24px 16px 40px
 @media(max-width:760px){.hgrid{grid-template-columns:minmax(0,1fr)}.stage{height:min(92vw,420px);order:-1}.hero::before{display:none}.take{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:600px){.grid,.steps{grid-template-columns:minmax(0,1fr)}.lead{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.float{animation:none}html{scroll-behavior:auto}.cta{transition:none}}
+
+.sf{border-top:1px solid rgba(255,255,255,.12);padding:56px 0 40px;margin-top:40px;text-align:left;color:#d8c3c4;font-size:15px;background:#070707}
+.sfw{max-width:1180px;margin:0 auto;padding:0 max(5vw,16px)}
+.sfg{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+.sf h4{margin:0 0 12px;font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:#a7a3a0}
+.sf a{display:block;text-decoration:none;font-weight:700;padding:4px 0;color:#fff}
+.sf a:hover{color:#ff2a36}
+.sf span{color:#a7a3a0}
+.sf p{color:#a7a3a0;margin:12px 0 0;max-width:34ch}
+.sfb{display:flex!important;align-items:center;gap:12px}
+.sfb img{width:42px;height:42px;border-radius:50%}
+.sfb b{display:block;font:800 18px Unbounded,sans-serif;color:#fff}
+.sfb small{display:block;font-size:10px;letter-spacing:.24em;color:#a7a3a0;font-weight:700}
+.sfc{margin-top:40px;color:#6d6a68;font-size:13px}
+@media(max-width:900px){.sfg{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.sfg{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -226,7 +242,16 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:24px 16px 40px
   </div>
 </section>
 
-<footer>UWELL KIDS ❤️ Тут починається твоя історія.</footer>
+<footer class="sf"><div class="sfw">
+  <div class="sfg">
+    <div><a class="sfb" href="./"><img src="uwell-prod-logo.png" alt="" width="42" height="42"><span><b>UWELL</b><small>GROUP · KYIV</small></span></a>
+      <p>UWELL KIDS ❤️ Тут починається твоя історія.</p></div>
+    <div><h4>Розділи</h4><a href="./">Головна</a><a href="cases">Кейси</a><a href="artists">Артисти</a><a href="studio">Студія</a><a href="basketball">Баскетбол</a><a href="kids">KIDS</a><a href="contacts">Контакти</a></div>
+    <div><h4>Соцмережі</h4><a href="https://www.instagram.com/uwell.kids/">UWELL KIDS</a><a href="https://www.instagram.com/uwell.production/">Instagram</a><a href="https://www.youtube.com/@uwellprod">YouTube</a></div>
+    <div><h4>Контакти</h4><a href="tel:+380633164656">+38 063 316 46 56</a><span>Київ, Україна</span></div>
+  </div>
+  <div class="sfc">© UWELL GROUP. Київ.</div>
+</div></footer>
 
 <script>
 {
