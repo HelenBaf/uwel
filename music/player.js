@@ -7,19 +7,23 @@ const ss={get(k){try{return JSON.parse(sessionStorage.getItem('uwp_'+k))}catch(e
 let order=ss.get('order');
 if(!Array.isArray(order)||order.length!==T.length){order=[...T.keys()];for(let a=order.length-1;a>0;a--){const b=Math.floor(Math.random()*(a+1));[order[a],order[b]]=[order[b],order[a]]}ss.set('order',order)}
 let pos=+ss.get('pos')||0;if(pos>=order.length)pos=0;
-const css=`#uwpbox{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(max(18px,env(safe-area-inset-bottom)) + 4px);z-index:70;display:flex;align-items:center;gap:6px;padding:5px;border-radius:999px;background:rgba(18,18,20,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 14px 40px -12px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.12);font:800 15px Manrope,system-ui,sans-serif}
-#uwpbox button{border:0;cursor:pointer;color:#fff;font:inherit;display:flex;align-items:center;justify-content:center;transition:background .2s}
-#uwpbox button:focus-visible{outline:2px solid #fff;outline-offset:3px}
-#uwpbox svg{width:22px;height:22px;fill:currentColor;flex:none}
-.uwp-sk{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.08)}.uwp-sk:hover{background:rgba(255,255,255,.18)}.uwp-sk svg{width:18px;height:18px}
-#uwp{position:relative;height:50px;padding:0 20px 0 16px;border-radius:999px;gap:10px;background:#e30613}
+const css=`#uwpbox{display:flex;align-items:center;gap:4px;padding:3px;border-radius:999px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);font:800 14px Manrope,system-ui,sans-serif;flex:none}
+#uwpbox:not(.hdr){position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(max(18px,env(safe-area-inset-bottom)) + 4px);z-index:70;background:rgba(18,18,20,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+#uwpbox button{border:0;cursor:pointer;color:#fff;font:inherit;display:flex;align-items:center;justify-content:center;transition:background .2s;flex:none}
+#uwpbox button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+#uwpbox svg{width:18px;height:18px;fill:currentColor;flex:none}
+.uwp-sk{width:36px;height:36px;border-radius:50%;background:transparent}.uwp-sk:hover{background:rgba(255,255,255,.14)}.uwp-sk svg{width:15px!important;height:15px!important}
+#uwp{height:40px;min-width:40px;padding:0 11px;border-radius:999px;gap:8px;background:#e30613}
 #uwp:hover{background:#ff2a36}
-#uwp .tx{max-width:min(170px,34vw);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#uwp .eq{display:none;gap:3px;height:18px;width:22px;flex:none;justify-content:center;align-items:flex-end}#uwp .eq i{width:4px;border-radius:2px;background:#fff;animation:uwpq .9s ease-in-out infinite}
+#uwp .tx{display:none;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#uwpbox:not(.hdr) #uwp .tx{display:block}#uwpbox:not(.hdr) #uwp{padding:0 16px 0 12px}
+#uwp .eq{display:none;gap:2px;height:15px;width:18px;justify-content:center;align-items:flex-end}#uwp .eq i{width:3px;border-radius:2px;background:#fff;animation:uwpq .9s ease-in-out infinite}
 #uwp .eq i:nth-child(2){animation-delay:-.3s}#uwp .eq i:nth-child(3){animation-delay:-.6s}
 #uwp.on .eq{display:flex}#uwp.on svg{display:none}
 @keyframes uwpq{0%,100%{height:30%}50%{height:100%}}
-@media (max-width:420px){#uwpbox{gap:4px;padding:4px}.uwp-sk{width:42px;height:42px}#uwp{padding:0 16px 0 14px}}
+@media (max-width:820px){#uwpbox.hdr{margin-left:auto}#uwpbox.hdr~.nav{margin-left:0}}
+@media (min-width:821px){#uwpbox.hdr{gap:2px;padding:2px;margin-left:-4px}#uwpbox.hdr .uwp-sk{width:32px;height:32px}#uwpbox.hdr #uwp{height:36px;min-width:36px;padding:0 9px}#uwpbox.hdr~.nav a{padding-left:11px;padding-right:11px}}
+@media (max-width:360px){.uwp-sk{width:32px;height:32px}}
 @media (prefers-reduced-motion:reduce){#uwp .eq i{animation:none;height:70%}}`;
 const st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 const box=document.createElement('div');box.id='uwpbox';box.setAttribute('role','group');box.setAttribute('aria-label','Музика UWELL');
@@ -40,7 +44,8 @@ au.onended=()=>next(1);au.onerror=()=>{if(au.src)setTimeout(()=>next(1),400)};
 setInterval(()=>{if(!au.paused)ss.set('t',au.currentTime)},1500);
 addEventListener('pagehide',()=>ss.set('t',au.currentTime));
 if('mediaSession' in navigator){try{navigator.mediaSession.setActionHandler('nexttrack',()=>next(1));navigator.mediaSession.setActionHandler('previoustrack',()=>next(-1));navigator.mediaSession.setActionHandler('play',()=>au.play());navigator.mediaSession.setActionHandler('pause',()=>au.pause())}catch(e){}}
-document.body.appendChild(box);
+const mount=()=>{const nav=document.querySelector('#top .wrap > .nav');if(nav){box.classList.add('hdr');nav.before(box)}else{box.classList.remove('hdr');document.body.appendChild(box)}};
+mount();
 /* продовжити після повного перезавантаження сторінки */
 const was=ss.get('on');set(false,+ss.get('t')||0);
 if(was){au.play().catch(()=>{const go=()=>{au.play().catch(()=>{});removeEventListener('pointerdown',go,true);removeEventListener('keydown',go,true)};addEventListener('pointerdown',go,true);addEventListener('keydown',go,true)})}
@@ -51,13 +56,15 @@ const swap=async(url,push)=>{
  const doc=new DOMParser().parseFromString(await r.text(),'text/html');
  if(!doc.querySelector('main')||!document.querySelector('main')||doc.querySelectorAll('head style').length)throw 0;
  document.title=doc.title;
- for(const n of [...document.body.childNodes])if(n!==box)n.remove();
+ box.remove();
+ for(const n of [...document.body.childNodes])n.remove();
  document.body.className=doc.body.className;
  const scripts=[];
- for(const n of [...doc.body.childNodes]){if(n.nodeName==='SCRIPT'){scripts.push(n);continue}document.body.insertBefore(document.importNode(n,true),box)}
+ for(const n of [...doc.body.childNodes]){if(n.nodeName==='SCRIPT'){scripts.push(n);continue}document.body.appendChild(document.importNode(n,true))}
  for(const sel of ['meta[name=description]','meta[property="og:title"]','link[rel=canonical]']){const a=document.head.querySelector(sel),b=doc.head.querySelector(sel);if(a&&b)a.replaceWith(document.importNode(b,true))}
+ mount();
  if(push)history.pushState({uwp:1},'',url);
- for(const s of scripts){if(s.src&&/music\/player\.js/.test(s.src))continue;const e=document.createElement('script');for(const a of s.attributes)e.setAttribute(a.name,a.value);e.textContent=s.textContent;document.body.insertBefore(e,box)}
+ for(const s of scripts){if(s.src&&/music\/player\.js/.test(s.src))continue;const e=document.createElement('script');for(const a of s.attributes)e.setAttribute(a.name,a.value);e.textContent=s.textContent;document.body.appendChild(e)}
  const h=new URL(url).hash;const el=h&&document.getElementById(decodeURIComponent(h.slice(1)));
  if(el)el.scrollIntoView();else scrollTo(0,0)};
 document.addEventListener('click',e=>{
