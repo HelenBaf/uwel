@@ -441,3 +441,26 @@ section[id]{scroll-margin-top:90px}
 .g3 .artist .ph.has,.g3 .artist .ph{aspect-ratio:1/1}
 img.pav{object-fit:cover;display:block}
 @media(max-width:600px){.grid.g3:has(>.artist){grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.artist .bd{padding:12px 14px 14px}.artist h3{font-size:16px}.artist p{font-size:12.5px}.artist a{font-size:14px}.artist .ph b{font-size:40px}}
+.case .vis.photo.poster{background-size:contain;background-repeat:no-repeat;background-color:#0b1430;background-position:center}
+.case:hover .vis.photo.poster{background-size:contain}
+.packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
+.pack{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:clamp(22px,2.6vw,32px);display:flex;flex-direction:column;gap:8px;transition:transform .3s,border-color .3s}
+.pack:hover{transform:translateY(-6px);border-color:var(--red2)}
+.pack.hot{background:radial-gradient(90% 60% at 80% 0%,rgba(227,6,19,.35),transparent 70%),var(--card);border-color:rgba(227,6,19,.6)}
+.pnum{font:800 12px Unbounded,sans-serif;color:var(--red2);letter-spacing:.1em}
+.pack h3{font-size:clamp(26px,2.6vw,34px)}
+.pack .pt{margin:0;font-weight:700}
+.pack .pg{margin:0;color:var(--mute);font-size:14px}
+.pack ul{list-style:none;margin:10px 0;padding:0;display:grid}
+.pack li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.pack li span{color:#ddd}
+.pack li b{white-space:nowrap;color:#fff}
+.pack .pf{font-size:13px;color:var(--mute);font-weight:700;letter-spacing:.04em;margin-bottom:10px}
+.pack.hot .pf{font:800 20px Unbounded,sans-serif;color:#fff}
+.pack .btn{width:100%}
+.note a{color:#fff;font-weight:700}
+.partners{grid-template-columns:repeat(5,minmax(0,1fr))}
+.partners div:nth-child(5n){border-right:0}
+.partners div:nth-child(-n+5){border-bottom:1px solid var(--line)}
+@media(max-width:1000px){.packs{grid-template-columns:minmax(0,1fr)}.partners div:nth-child(5n){border-right:1px solid var(--line)}.partners div:nth-child(2n){border-right:0}}
+.pack li b{white-space:normal;text-align:right;max-width:48%;flex:none}.pack li span{min-width:0}
